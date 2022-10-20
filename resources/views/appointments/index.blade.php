@@ -51,7 +51,7 @@
                         <tbody>
                           @if (count($appointments)<=0)
                           <tr>
-                            <td  colspan="4">No hay resultados </td>
+                            <td  colspan="4" align="center">There are not appointment today: {{ date("d-m-Y") }} </td>
                           </tr>
                           @else
                           @foreach ($appointments as $appointment)

@@ -145,7 +145,8 @@
 </head>
 <body>
 	<header class="header" id="inicio">
-		<img src={{asset("vendor/img/bars-solid.svg.svg")}} class="hamburguer"></img>
+		<img src={{asset("vendor/img/bars-solid.svg")}} class="hamburguer"></img>
+        {{-- <img src={{asset("vendor/img/bars-solid.svg.svg")}} class="hamburguer"></img> --}}
 		<nav class="menu-navegacion">
 			<a href="{{ route('login') }}" target="blink">Login </a>
 			<a href="#servicio">Servicios </a>

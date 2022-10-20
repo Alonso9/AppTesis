@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->time('hour');
             $table->date('date');
+            $table->text('patientname');
             $table->integer('idMedic');
         });
     }

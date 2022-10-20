@@ -13,18 +13,17 @@
                     <form action="{{route('profile.update')}}" method="post">
                         @method('PUT')
                         @csrf
-                        {{-- @csrf --}}
+                        {{-- <div>{{ Auth::user()->id }}</div> --}}
                         <div class="grid grid-cols-2 gap-6">
                             <div class="grid grid-row-2 gap-6">
                                 {{-- Para llamar un componente se usa x-nombre --}}
                                 <div>
-                                    <x-label for="name" :value="__('Patient Name')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="name"></x-input>
+                                    <x-label for="name" :value="__('Date')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="date" name="name"></x-input>
                                 </div>
-
                                 <div>
-                                    <x-label for="email" :value="__('Age')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="Age"></x-input>
+                                    <x-label for="name" :value="__('Patient name')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="text" name="patientname"></x-input>
                                 </div>
                             </div>
                         </div>
@@ -33,19 +32,14 @@
                             <div class="grid grid-row-2 gap-6">
                                 {{-- Para llamar un componente se usa x-nombre --}}
                                 <div>
-                                    <x-label for="password" :value="__('Height')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="height"/>
-                                </div>
-
-                                <div>
-                                    <x-label for="password_confirmation" :value="__('Weight')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="weight"></x-input>
+                                    <x-label for="password" :value="__('Hour')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="text" name="hour"/>
                                 </div>
                             </div>
                         </div>
                         <div class="flex items-center justify-end mt-4">
                             <x-button class="ml-3">
-                                Update
+                                Save
                             </x-button>
                         </div>
                     </form>
