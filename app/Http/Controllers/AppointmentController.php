@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Appointment;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Date;
 
 class AppointmentController extends Controller
 {
@@ -13,10 +17,10 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
         // return redirect()->route('appointments.index');
-        return view('appointments.index');
-        // dd("NOOOOOOOOOOO");
+        $appointments = DB::table('appointment')->select('*')->where('idMedic','=', auth()->user()->id)->orderBy('hour', 'asc')->paginate(50);
+        return view('appointments.index', compact('appointments'));
+        // dd($appointments);
     }
 
     /**

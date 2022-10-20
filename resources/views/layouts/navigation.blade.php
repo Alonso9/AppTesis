@@ -18,7 +18,7 @@
                     @csrf
                     @method('PUT')
                     
-                    <x-nav-link :href="route('appointments.index')">
+                    <x-nav-link :href="route('appointments.index',Auth::user()->id)">
                         {{ __('Appointments') }}
                     @csrf
                     @method('PUT')

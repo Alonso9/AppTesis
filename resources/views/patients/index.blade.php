@@ -13,29 +13,28 @@
                     {{-- @csrf --}}
                     {{-- @method('PUT') --}}
                     {{-- <a href="{{route('appointments.create')}}">C</a> --}}
-                    
                     <table class="table table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Patient:</th>
-                            <th scope="col">See</th>
+                            <th scope="col">Records</th>
                             <th scope="col">Options</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>Mark Peter Arson</td>
-                            <td><a href="#">See</a></td>
+                            <td><a href="#"><box-icon name='history'></box-icon></a></td>
                             <td>Edit | Delete</td>
                           </tr>
                           <tr>
                             <td>Mark Peter Arson</td>
-                            <td><a href="#">See</a></td>
+                            <td><a href="#"><box-icon name='history'></box-icon></a></td>
                             <td>Edit | Delete</td>
                           </tr>
                           <tr>
                             <td>Mark Peter Arson</td>
-                            <td><a href="#">See</a></td>
+                            <td><a href="#"><box-icon name='history'></box-icon></a></td>
                             <td>Edit | Delete</td>
                           </tr>
                         </tbody>

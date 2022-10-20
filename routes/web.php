@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+/* All routes in this block have to be logged */
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -30,8 +30,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
     // Appoinments routes
-    Route::get('Appointments', [AppointmentController::class, 'index'])->name('appointments.index');
-    Route::get('Appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
+    Route::prefix('appointments')->name('appointments.')->group(function() {
+        Route::get('/', [AppointmentController::class, 'index'])->name('index');
+        Route::get('create', [AppointmentController::class, 'create'])->name('create');
+    });
     // Route::view('Appointments', 'appointments.index')->name('appointments.index');
 
 
