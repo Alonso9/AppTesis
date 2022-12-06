@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Appointment;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Date;
+use App\Models\User;
+use App\Models\Patient;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Session;
+
 
 class PatientController extends Controller
 {
@@ -14,7 +23,11 @@ class PatientController extends Controller
     public function index()
     {
         //
-        return view('patients.index');
+        $patients = DB::table('patients')->select('*')
+        ->where('idMedic','=', auth()->user()->id)
+        ->orderBy('patientname', 'asc')
+        ->paginate(50);
+        return view('patients.index', compact('patients'));
     }
 
     /**
@@ -47,6 +60,14 @@ class PatientController extends Controller
     public function show($id)
     {
         //
+        $patient = DB::table('patients')->find($id);
+        $appointments = DB::table('appointment')->select('*')
+        ->where('patientname','=', $patient->patientname)
+        ->orderBy('date', 'asc')
+        ->paginate(50);
+        // $paciente = DB::table('patients')->select('*')->where('id', $id);
+        
+        return view('patients.records', compact('patient', 'appointments'));
     }
 
     /**

@@ -18,19 +18,31 @@
                     @csrf
                     @method('PUT')
                     
-                    <x-nav-link :href="route('appointments.index',Auth::user()->id)">
-                        {{ __('Appointments') }}
-                    @csrf
-                    @method('PUT')
-                    </x-nav-link>
-
-                    {{-- <a href="{{route('appointments.index')}}">CItass</a> --}}
-
-                    <x-nav-link :href="route('patients.index')" :active="request()->routeIs('dashboard')">
-                        {{ __('Pacients') }}
+                    @if (Auth::user()->rol == 'medic')
+                        <x-nav-link :href="route('appointments.index',Auth::user()->id)">
+                            {{ __('Citas') }}
                         @csrf
                         @method('PUT')
-                    </x-nav-link>
+                        </x-nav-link>
+
+                        {{-- <a href="{{route('appointments.index')}}">CItass</a> --}}
+
+                        <x-nav-link :href="route('patients.index')" :active="request()->routeIs('dashboard')">
+                            {{ __('Pacientes') }}
+                            @csrf
+                            @method('PUT')
+                        </x-nav-link>
+                    @endif
+                    {{-- Links para el administrador --}}
+                    @if (Auth::user()->rol == 'admin')
+                        <x-nav-link href="{{route('profile.index')}}">
+                            {{ __('Usuarios') }}
+                        {{-- @csrf --}}
+                        @method('GET')
+                        @csrf
+                        </x-nav-link>
+                    @endif
+
                 </div>
             </div>
 
@@ -52,7 +64,7 @@
                     <x-slot name="content">
                         {{-- Edit Profile --}}
                         <x-dropdown-link :href="route('profile')">
-                            {{ __('My Profile') }}
+                            {{ __('Mi perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

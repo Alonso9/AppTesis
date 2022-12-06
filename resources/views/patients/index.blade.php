@@ -9,34 +9,33 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    Your Patients Table
-                    {{-- @csrf --}}
-                    {{-- @method('PUT') --}}
-                    {{-- <a href="{{route('appointments.create')}}">C</a> --}}
+                  <h1 class="textAppo">
+                    Tabla de Pacientes registrados
+                  </h1><br>
                     <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th scope="col">Patient:</th>
-                            <th scope="col">Records</th>
-                            <th scope="col">Options</th>
+                            <th scope="col">Nombre:</th>
+                            <th scope="col">Historial de citas:</th>
+                            <th scope="col">Datos del paciente:</th>
+                            <th scope="col">Opciones:</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @if (count($patients)<=0)
                           <tr>
-                            <td>Mark Peter Arson</td>
-                            <td><a href="#"><box-icon name='history'></box-icon></a></td>
-                            <td>Edit | Delete</td>
+                            <td  colspan="4" align="center">No hay Pacientes registrados aun</td>
                           </tr>
+                          @else
+                          @foreach ($patients as $patient)
                           <tr>
-                            <td>Mark Peter Arson</td>
-                            <td><a href="#"><box-icon name='history'></box-icon></a></td>
-                            <td>Edit | Delete</td>
+                            <th scope="row">{{$patient->patientname}}</th>
+                            <td><a href="{{route('patients.show',$patient->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-clock-rotate-left"></i></button></a></td>
+                            <td><a href="{{route('patients.index',$patient->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-eye"></i></button></a></td>
+                            <td><a href="{{route('patients.index', $patient->id)}}" class="btn btn-outline-primary"><box-icon name='calendar-edit'></box-icon></a> | <a href="{{route('patients.index',$patient->id)}}" class="btn btn-outline-danger"><box-icon name='trash'></box-icon></a> </td>
                           </tr>
-                          <tr>
-                            <td>Mark Peter Arson</td>
-                            <td><a href="#"><box-icon name='history'></box-icon></a></td>
-                            <td>Edit | Delete</td>
-                          </tr>
+                          @endforeach
+                          @endif
                         </tbody>
                       </table>
                 </div>

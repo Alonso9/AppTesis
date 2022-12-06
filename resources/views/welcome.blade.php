@@ -228,8 +228,9 @@
 	<footer id="contact">
 		<div class="footer-contect">
 			<div class="contact-us">
-				<h2 class="brand">Alonso Desing</h2>
-				<p>We're experts making your dreams.</p>
+				<h2 class="brand">Para comunicarse con nosotros:</h2>
+				<p>correo@gmail.com</p>
+
 			</div>
 			<div class="social-media">
 				<a href="./" class="social-media-icon"><i class='bx bxl-facebook' ></i></a>
