@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Date;
 use App\Models\User;
 use App\Models\Patient;
+use App\Models\Records;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Session;
 
@@ -103,4 +104,53 @@ class PatientController extends Controller
     {
         //
     }
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showRecords ($id){
+
+        $patient = Patient::findOrFail($id);
+        // $patient = Patient::query()->findOrFail($id);
+        // $patient = DB::table('patients')->find($id);
+        $record = DB::table('records')->select('*')->where('patientId', $id)->first();
+
+        return view('patients.historial', compact('patient', 'record'));
+        // return $record;
+    }
+
+    public function createRecords($id){
+        $patient = Patient::findOrFail($id);
+        return view('patients.create', compact('patient'));
+    }
+
+    public function saveRecords(Request $request){
+        $record = new Records();
+        
+        $record->patientId = $request->input('id');
+        $record->ethnicity = $request->input('ethnicity');
+        $record->dob = $request->input('dob');
+        $record->surgeries = $request->input('surgeries');
+        $record->sex = $request->input('sex');
+        $record->familybackgr = $request->input('familybackgr');
+        $record->diabetes = $request->input('diabetes');
+        $record->numbre_phone = $request->input('numbre_phone');
+        $record->broken_bones = $request->input('broken_bones');
+        $record->blood_type = $request->input('blood_type');
+
+        $record->save();
+
+        $patients = DB::table('patients')->select('*')
+        ->where('idMedic','=', auth()->user()->id)
+        ->orderBy('patientname', 'asc')
+        ->paginate(50);
+        
+
+        // return "se mando";
+        return view('patients.index', compact('patients'))->with('alert', "La cita ha sido actualizada con exito!");
+    }
+
 }

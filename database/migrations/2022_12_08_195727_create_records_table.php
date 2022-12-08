@@ -15,7 +15,16 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('patientId');
+            $table->string('ethnicity');
+            $table->string('dob'); // fecha de nacimiento
+            $table->string('surgeries');
+            $table->string('sex'); // Sexo
+            $table->text('familybackgr'); // Antecedentes familiares
+            $table->string('diabetes');
+            $table->string('numbre_phone');
+            $table->string('broken_bones');
+            $table->string('blood_type');
         });
     }
 

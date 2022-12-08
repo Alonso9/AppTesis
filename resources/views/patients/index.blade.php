@@ -17,7 +17,7 @@
                           <tr>
                             <th scope="col">Nombre:</th>
                             <th scope="col">Historial de citas:</th>
-                            <th scope="col">Datos del paciente:</th>
+                            <th scope="col">Historial medico del paciente:</th>
                             <th scope="col">Opciones:</th>
                           </tr>
                         </thead>
@@ -31,7 +31,7 @@
                           <tr>
                             <th scope="row">{{$patient->patientname}}</th>
                             <td><a href="{{route('patients.show',$patient->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-clock-rotate-left"></i></button></a></td>
-                            <td><a href="{{route('patients.index',$patient->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-eye"></i></button></a></td>
+                            <td><a href="{{route('patients.showRecords',$patient->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-eye"></i></button></a></td>
                             <td><a href="{{route('patients.index', $patient->id)}}" class="btn btn-outline-primary"><box-icon name='calendar-edit'></box-icon></a> | <a href="{{route('patients.index',$patient->id)}}" class="btn btn-outline-danger"><box-icon name='trash'></box-icon></a> </td>
                           </tr>
                           @endforeach
