@@ -94,16 +94,14 @@ class MedicController extends Controller
 
         if(DB::table('medic_data')->where('medicId', $request->input('id'))->exists()){
 
-            // DB::insert('insert into medic_data (medicId, license, specialty, status, lat, lng, description, numbre_phone, img) values (?,?,?,?,?,?,?,?,?)', 
-            // [$request->input('id'), $request->input('license'),$request->input('specialty'),
-            // $request->input('status'), $request->input('lat'), $request->input('lng'),
-            // $request->input('description'), $request->input('numbre_phone'), "texto.png"]);
 
+            $extension = $request->file('imagen')->getClientOriginalName();
+            $request->file('imagen')->storeAs('/public/ProfileImgs', $extension);
             $medic = medicData::updateOrCreate(
                 ['medicId' => $request->input('id')],
                 ['license' => $request->input('license'), 'specialty' => $request->input('specialty'), 'status' => $request->input('status'), 
                 'lat' => $request->input('lat'), 'lng' => $request->input('lng'), 'description' => $request->input('description'), 
-                'numbre_phone' => $request->input('numbre_phone'), 'img' => "new.png", 'description' => $request->input('description')]
+                'numbre_phone' => $request->input('numbre_phone'), 'img' => $extension, 'description' => $request->input('description')]
             );
 
             return Redirect::back()->with('alert', " actualizado corectamente la informacion!");
@@ -119,7 +117,8 @@ class MedicController extends Controller
             $medic->description = $request->input('description');
             $medic->numbre_phone = $request->input('numbre_phone');
             // $medic->img = $request->input('img');
-            $medic->img = "HOLA";
+            $extension = $request->file('imagen')->getClientOriginalName();
+            $request->file('imagen')->storeAs('/public/ProfileImgs', $extension);
 
             $medic->save();
 

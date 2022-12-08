@@ -45,8 +45,8 @@
                                     <x-input class="block mt-1 w-full" type="text" name="numbre_phone" placeholder="314-100-4281" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></x-input>
                                 </div>
                                 <div>
-                                    <x-label for="email" :value="__('Imagen para el perfil (Solo se aceptan formato de imagenes)')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="file" name="img" ></x-input>
+                                    <x-label :value="__('Imagen de perfil')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="file" name="imagen" ></x-input>
                                 </div>        
                             </div>                
                         @else
@@ -81,8 +81,10 @@
                                     <x-input class="block mt-1 w-full" type="text" name="numbre_phone" value="{{$medic->numbre_phone}}" placeholder="314-100-4281" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></x-input>
                                 </div>
                                 <div>
-                                    <x-label for="email" :value="__('Imagen para el perfil (Solo se aceptan formato de imagenes)')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="file" value="{{$medic->img}}" name="img" ></x-input>
+                                    <x-label :value="__('Actualizar imagen para el perfil')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="file" name="imagen" ></x-input>
+                                    {{-- <x-label for="email" :value="__('Imagen para el perfil (Solo se aceptan formato de imagenes)')"></x-label> --}}
+                                    {{-- <x-input class="block mt-1 w-full" type="file" value="{{$medic->img}}" name="img" ></x-input> --}}
                                 </div>        
                             </div>
                         @endforeach
