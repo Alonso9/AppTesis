@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Personal Dashboard for medic: ') }}
+            {{ __('Formulacion para ditar su informacion: ') }}
             {{ Auth::user()->name }}
         </h2>
     </x-slot>
@@ -14,36 +14,32 @@
                         @method('PUT')
                         @csrf
                         {{-- @csrf --}}
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="grid grid-row-2 gap-6">
-                                {{-- Para llamar un componente se usa x-nombre --}}
-                                <div>
-                                    <x-label for="name" :value="__('Name')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="name" value="{{Auth::user()->name}}"></x-input>
-                                </div>
-
-                                <div>
-                                    <x-label for="email" :value="__('Email')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="email" value="{{Auth::user()->email}}"></x-input>
-                                </div>
-                            </div>
+                        <div>
+                            <x-label for="name" :value="__('Nombre')"></x-label>
+                            <x-input class="block mt-1 w-full" type="text" name="name" value="{{Auth::user()->name}}"></x-input>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="grid grid-row-2 gap-6">
-                                {{-- Para llamar un componente se usa x-nombre --}}
-                                <div>
-                                    <x-label for="password" :value="__('New Password')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="password" name="password"
-                                    autocomplete="new-password"/>
-                                </div>
-
-                                <div>
-                                    <x-label for="password_confirmation" :value="__('Confirm Password')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="password" name="password_confirmation"/>
-                                </div>
-                            </div>
+                        <div>
+                            <x-label for="email" :value="__('Correo')"></x-label>
+                            <x-input class="block mt-1 w-full" type="text" name="email" value="{{Auth::user()->email}}"></x-input>
                         </div>
+
+                        <div>
+                            <x-label for="password" :value="__('contraseña actual')"></x-label>
+                            <x-input class="block mt-1 w-full" type="password" name="oldpassword"
+                            autocomplete="new-password"/>
+                        </div>
+
+                        <div>
+                            <x-label for="password_confirmation" :value="__('Nueva contraseña')"></x-label>
+                            <x-input class="block mt-1 w-full" type="password" name="password_confirmation"/>
+                        </div>
+
+                        <div>
+                            <x-label for="password_confirmation" :value="__('Confirmar contraseña')"></x-label>
+                            <x-input class="block mt-1 w-full" type="password" name="password_confirmation"/>
+                        </div>
+                    </div>
                         <div class="flex items-center justify-end mt-4">
                             <x-button class="ml-3">
                                 Update
@@ -55,11 +51,18 @@
             </div>
         </div>
     </div>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <script>
+
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
         if(exist){
           alert(msg);
+//             Swal.fire({
+//                 icon: 'error',
+//                 title: 'Oops...',
+//                 text: msg,
+// \            });
         }
       </script>
     

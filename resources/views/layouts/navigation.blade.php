@@ -63,9 +63,22 @@
 
                     <x-slot name="content">
                         {{-- Edit Profile --}}
+                        @if (Auth::user()->rol == 'medic')
+                        <x-dropdown-link href="{{route('medic.create')}}">
+                            {{ __('Mi perfil de medico') }}
+                        {{-- @csrf --}}
+                        @method('GET')
+                        @csrf
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('profile')">
+                            {{ __('Editar sesion') }}
+                        </x-dropdown-link>
+                        @else
                         <x-dropdown-link :href="route('profile')">
                             {{ __('Mi perfil') }}
                         </x-dropdown-link>
+                    @endif
+                        
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -74,7 +87,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar sesion') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

@@ -43,18 +43,14 @@ class AppointmentController extends Controller
     public function create()
     {
         //
-        // return view('appointments.create');
-        // return redirect()->route('appointments.create');
-        // $request->session()->get('id');
-        $mesg = "";
-        $id = Session('id');
-        // $patients = DB::select('select * from patients where idMedic = :id', ['id' => $id]);
         $patients = DB::table('patients')->select('*')
         ->where('idMedic','=', auth()->user()->id)
         ->orderBy('id', 'asc')
         ->paginate(50);
-        return view('appointments.create', compact('patients'));
-        // dd($patients);
+
+        $appointments = DB::table('appointment')->select('date', 'hour')->where('idMedic', auth()->user()->id);
+        return view('appointments.create', compact('patients', 'appointments'));
+        // dd($appointments);
     }
 
     /**

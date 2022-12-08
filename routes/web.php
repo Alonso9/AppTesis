@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\MedicController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::view('profile', 'profile')->name('profile');
     Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profile/medico/create', [MedicController::class, 'create'])->name('medic.create');
+    Route::post('profile/medico/update', [MedicController::class, 'update'])->name('medic.update');
 
     
 

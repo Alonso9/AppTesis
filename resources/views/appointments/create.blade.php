@@ -27,7 +27,7 @@
                                 <div>
                                     {{-- <x-label for="name" :value="__('Patient name')"></x-label> --}}
                                     <x-label for="name" :value="__('Nombre completo del paciente:')"></x-label>
-                                    <x-input class="block mt-1 w-full" list="patientname" type="text" name="patientname" placeholder="Full name"></x-input>                                    
+                                    <x-input class="block mt-1 w-full" autocomplete="off" list="patientname" type="text" name="patientname" placeholder="Full name"></x-input>                                    
                                     <datalist id="patientname">
                                     @foreach ($patients as $patient)        
                                         <option value="{{ $patient->patientname }}">
@@ -42,7 +42,12 @@
                                 <div>
                                     {{-- <x-label for="password" :value="__('Hour')"></x-label> --}}
                                     <x-label for="password" :value="__('Hora de la cita:')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="time" name="hour" required/>
+                                    <x-input class="block mt-1 w-full"  name="hour" list="horas" autocomplete="off" required/>
+                                    <datalist id="horas">
+                                        <option value="7:00">
+                                        <option value="7:30">
+                                        <option value="8:00">
+                                    </datalist>
                                 </div>
                             </div>
                         </div>

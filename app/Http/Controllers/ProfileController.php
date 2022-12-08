@@ -13,28 +13,25 @@ class ProfileController extends Controller
     //
     public function update ( Request $request){
 
-        // if($request->input('name')){
-        //     auth()->user()->update($request->only('name', 'email'));
-        // }else{
-        //     return print_r($request->input('name'));
-        // }
 
-        if($request->input('name') or $request->input('password')){
-            if($request->input('password') == $request->input('password_confirmation')){
-                auth()->user()->update([
-                    'password' => bcrypt($request->input('password'))
-                ]);
-                auth()->user()->update($request->only('name', 'email'));
-                return redirect()->route('profile')->with('alert', 'Tu perfil ha sido actualizado!');
+        if(Hash::check($request->input('oldpassword'), auth()->user()->password)){
+            if($request->input('name') or $request->input('password')){
+                if($request->input('password') == $request->input('password_confirmation')){
+                    auth()->user()->update([
+                        'password' => bcrypt($request->input('password'))
+                    ]);
+                    auth()->user()->update($request->only('name', 'email'));
+                    return redirect()->route('profile')->with('alert', 'Tu perfil ha sido actualizado!');
+                }else{
+                    return redirect()->route('profile')->with('alert', 'Opps Tu perfil no ha sido actualizado, passwords no coinciden!');
+                }
             }else{
-                return redirect()->route('profile')->with('alert', 'Opps Tu perfil no ha sido actualizado, passwords no coinciden!');
+                return redirect()->route('profile')->with('alert', 'Opps error tu informacion no se ha actualizado!');
             }
+
         }else{
-            return redirect()->route('profile')->with('alert', 'Opps error tu informacion no se ha actualizado!');
+            return redirect()->route('profile')->with('alert', 'Opps la contraseña actual no concide!');
         }
-
-        // return redirect()->route('profile')->with('alert', 'Your profile info have been updated!');
-
     }
 
     public function create (){
