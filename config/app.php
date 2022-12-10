@@ -195,6 +195,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Providers para generar pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*

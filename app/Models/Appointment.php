@@ -11,7 +11,7 @@ class Appointment extends Model
     protected $table = 'appointment';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'hour', 'date','idMedic'
+        'hour', 'date','idMedic', 'dob', 'socialNumber', 'status'
     ];
 
     public $timestamps = false;

@@ -62,7 +62,7 @@
                           <tr>
                             <th scope="row">{{$appointment->hour, $appointment->hour}}</th>
                             <td>{{$appointment->patientname}}</td>
-                            <td><a href="{{route('appointments.show',$appointment->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-notes-medical"></i></button></a></td>
+                            <td><a href="{{route('appointments.makeappoinment',$appointment->id)}}"><button type="button" class="btn btn-light"><i class="fa-solid fa-notes-medical"></i></button></a></td>
                             <td><a href="{{route('appointments.edit', $appointment->id)}}" class="btn btn-outline-primary"><box-icon name='calendar-edit'></box-icon></a> | <a href="{{route('appointments.edit',$appointment->id)}}" class="btn btn-outline-danger"><box-icon name='trash'></box-icon></a> </td>
                           </tr>
                           @endforeach

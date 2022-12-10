@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->text('patientname');
+            $table->string('socialNumber');
             $table->integer('idMedic'); 
         });
     }

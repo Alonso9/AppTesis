@@ -47,6 +47,9 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('edit/{id}', [AppointmentController::class, 'edit'])->name('edit');
         Route::get('details/{id}', [AppointmentController::class, 'show'])->name('show');
         Route::post('update', [AppointmentController::class, 'update'])->name('update');
+        Route::get('form/{id}', [AppointmentController::class, 'makeappoinment'])->name('makeappoinment');
+        Route::post('save', [AppointmentController::class, 'fullappointment'])->name('fullappointment');
+        Route::post('pdf', [AppointmentController::class, 'pdfGenerator'])->name('pdfGenerator');
     });
     // Route::view('Appointments', 'appointments.index')->name('appointments.index');
 

@@ -15,12 +15,11 @@
                         @csrf
                         @method('POST')
                         <x-input class="block mt-1 w-full" type="hidden" name="medicId" value="{{ Auth::user()->id }}"></x-input>
-                        {{-- <div>{{ Auth::user()->id }}</div> --}}
+                        <x-input class="block mt-1 w-full" type="hidden" name="status" value="0"></x-input>
                         <div class="grid grid-cols-2 gap-6">
                             <div class="grid grid-row-2 gap-6">
                                 {{-- Para llamar un componente se usa x-nombre --}}
                                 <div>
-                                    {{-- <x-label for="name" :value="__('Date')"></x-label> --}}
                                     <x-label for="name" :value="__('Dia de la cita:')"></x-label>
                                     <x-input class="block mt-1 w-full" type="date" name="date" required></x-input>
                                 </div>
@@ -49,7 +48,12 @@
                                         <option value="8:00">
                                     </datalist>
                                 </div>
+                                <div>
+                                    <x-label for="name" :value="__('Numero de Seguro Social:')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="text" name="socialNumber" required></x-input>
+                                </div>
                             </div>
+                            
                         </div>
                         <div class="flex items-center justify-end mt-4">
                             <x-button class="ml-3">

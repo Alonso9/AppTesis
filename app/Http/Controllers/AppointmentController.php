@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Date;
 use App\Models\User;
 use App\Models\Patient;
-use Illuminate\Contracts\Session\Session as SessionSession;
+use App\Models\appointmentdata;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Session;
-
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class AppointmentController extends Controller
 {
@@ -75,7 +74,9 @@ class AppointmentController extends Controller
                 $appointment->idMedic = $request->input('medicId');
                 $appointment->date = $request->input('date');
                 $appointment->patientname = $request->input('patientname');
-    
+                $appointment->socialNumber = $request->input('socialNumber');
+                $appointment->status = $request->input('status');
+
                 $appointment->save();
                 $mesg = "Se aguardo la cita medica correctamente :D";
             
@@ -85,12 +86,14 @@ class AppointmentController extends Controller
                 $appointment->idMedic = $request->input('medicId');
                 $appointment->date = $request->input('date');
                 $appointment->patientname = $request->input('patientname');
+                $appointment->socialNumber = $request->input('socialNumber');
+                $appointment->status = $request->input('status');
                 
                 /* Save patient info */
                 $appointment->save();
     
                 
-                DB::insert('insert into patients (patientname, idMedic) values (?, ?)', [$request->input('patientname'), $request->input('medicId')]);
+                DB::insert('insert into patients (patientname, idMedic, socialNumber) values (?, ?, ?)', [$request->input('patientname'), $request->input('medicId'), $appointment->socialNumber = $request->input('socialNumber')]);
                 $mesg = "Se guardo la cita y el paciente nuevo quedo registrado";
             }
         }
@@ -182,4 +185,30 @@ class AppointmentController extends Controller
         // return $search;
 
     }
+
+    public function makeappoinment($id){
+        $appointment = Appointment::findOrFail($id);
+
+        return view('appointments.make', compact('appointment'));
+    }
+
+    public function fullappointment(Request $request){
+
+        $appointment = Appointment::findOrFail($request->input('id'));
+        $appointment->status = $request->input('status');
+        $appointment->save();
+
+        $data = DB::insert('insert into appointmentdata (matter, description, blood_pressure, weight, height, medicine, finaldescription, idAppointment) values (?,?,?,?,?,?,?,?)', [$request->input('matter'), $request->input('description'), $request->input('blood_pressure'), $request->input('weight'), $request->input('height'), $request->input('medicine'), $request->input('finaldescription'), $request->input('id')]);
+
+        return view('appointments.message', compact('appointment'));
+
+    }
+
+    public function pdfGenerator(Request $request){
+        $pdf = PDF::loadview('appointments.download');
+        
+
+        return $pdf->download('recetamedica');
+    }
+
 }

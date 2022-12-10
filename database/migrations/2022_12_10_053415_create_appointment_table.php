@@ -18,7 +18,9 @@ return new class extends Migration
             $table->time('hour');
             $table->date('date');
             $table->text('patientname');
+            $table->string('socialNumber');
             $table->integer('idMedic');
+            $table->string('status');
         });
     }
 
