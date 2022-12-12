@@ -94,14 +94,19 @@ class MedicController extends Controller
 
         if(DB::table('medic_data')->where('medicId', $request->input('id'))->exists()){
 
-
+            // GUardamos una imagen de perfil
             $extension = $request->file('imagen')->getClientOriginalName();
             $request->file('imagen')->storeAs('/public/ProfileImgs', $extension);
+            // Guardamos el logo
+            $extension2 = $request->file('logo')->getClientOriginalName();
+            $request->file('logo')->storeAs('/public/LogoMedic', $extension2);
+
             $medic = medicData::updateOrCreate(
                 ['medicId' => $request->input('id')],
                 ['license' => $request->input('license'), 'specialty' => $request->input('specialty'), 'status' => $request->input('status'), 
                 'lat' => $request->input('lat'), 'lng' => $request->input('lng'), 'description' => $request->input('description'), 
-                'numbre_phone' => $request->input('numbre_phone'), 'img' => $extension, 'description' => $request->input('description')]
+                'numbre_phone' => $request->input('numbre_phone'), 'img' => $extension, 'description' => $request->input('description'),
+                'logo' => $request->input('logo'), 'univer' => $request->input('univer')]
             );
 
             return Redirect::back()->with('alert', " actualizado corectamente la informacion!");
@@ -116,14 +121,25 @@ class MedicController extends Controller
             $medic->lng = $request->input('lng');
             $medic->description = $request->input('description');
             $medic->numbre_phone = $request->input('numbre_phone');
-            // $medic->img = $request->input('img');
+            // $medic->logo = $request->input('logo');
+            // $medic->logo = 'logo';
+            $medic->univer = $request->input('univer');
+            // $medic->img = $request->file('imagen');
+
             $extension = $request->file('imagen')->getClientOriginalName();
             $request->file('imagen')->storeAs('/public/ProfileImgs', $extension);
+            // Guardamos el logo
+            $extension2 = $request->file('logo')->getClientOriginalName();
+            $request->file('logo')->storeAs('/public/LogoMedic', $extension2);
+
+            $medic->img = $extension;
+            $medic->logo = $extension2;
 
             $medic->save();
 
 
             return Redirect::back()->with('alert', "Se ha actualizado su primer registro corectamente la informacion!");
+            // return $request->input('logo');
         }
 
 

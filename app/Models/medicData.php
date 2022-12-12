@@ -11,7 +11,7 @@ class medicData extends Model
     protected $table = 'medic_data';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'medicId','license','specialty','status','lat','lng','description','numbre_phone','img'
+        'medicId','license','specialty','status','lat','lng','description','numbre_phone','img','logo','univer'
     ];
 
     public $timestamps = false;

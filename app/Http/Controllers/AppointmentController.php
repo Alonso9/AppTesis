@@ -64,7 +64,8 @@ class AppointmentController extends Controller
         $appointment = new Appointment();
         $patient = new Patient();
         $hour =  $request->input('hour');
-        if(DB::table('appointment')->where('hour', $request->input('hour'))->exists() && DB::table('appointment')->where('date', $request->input('date'))->exists()){
+        // if(DB::table('appointment')->where('hour', $request->input('hour'))->exists() && DB::table('appointment')->where('date', $request->input('date'))->exists()){
+        if(DB::table('appointment')->where('hour', $request->input('hour'))->where('date', $request->input('date'))->exists()){
             $mesg = "Ya tienes una cita esa hora: "."$hour".", le recomiendo que cambie la hora!";
             return back()->with('alert', $mesg);
         }else{

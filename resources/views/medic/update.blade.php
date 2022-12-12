@@ -22,8 +22,8 @@
                                 <div>
                                     <x-label for="name" :value="__('Numero de celula profecional')"></x-label>
                                     <x-input class="block mt-1 w-full" type="text" name="id" value="{{Auth::user()->id}}" type="hidden"></x-input>
-                                    <x-input class="block mt-1 w-full" type="text" id="lat" name="lat" ></x-input>
-                                    <x-input class="block mt-1 w-full" type="text" id="lng" name="lng" ></x-input>
+                                    <x-input class="block mt-1 w-full" type="text" id="lat" name="lat" style="display: none"></x-input>
+                                    <x-input class="block mt-1 w-full" type="text" id="lng" name="lng" style="display: none"></x-input>
                                     <x-input class="block mt-1 w-full" type="text" name="license"></x-input>
                                 </div>
                                 
@@ -41,13 +41,21 @@
                                     <x-input class="block mt-1 w-full" type="text" name="description"></x-input>
                                 </div>
                                 <div>
-                                    <x-label for="email" :value="__('Numero de celular')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="text" name="numbre_phone" placeholder="314-100-4281" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></x-input>
+                                    <x-label for="email" :value="__('Universidad de procedencia')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="text" name="univer" ></x-input>
                                 </div>
                                 <div>
                                     <x-label :value="__('Imagen de perfil')"></x-label>
                                     <x-input class="block mt-1 w-full" type="file" name="imagen" ></x-input>
                                 </div>        
+                                <div>
+                                    <x-label for="email" :value="__('Numero de celular')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="text" name="numbre_phone" placeholder="314-100-4281" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></x-input>
+                                </div>
+                                <div>
+                                    <x-label :value="__('Imagen para logo de la receta')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="file" name="logo" ></x-input>
+                                </div>
                             </div>                
                         @else
                         @foreach($medic as $medic)
@@ -76,15 +84,23 @@
                                     <x-label for="email" :value="__('Descripcion profecional')"></x-label>
                                     <x-input class="block mt-1 w-full" type="text" name="description" value="{{$medic->description}}"></x-input>
                                 </div>
+
+                                <div>
+                                    <x-label for="email" :value="__('Universidad de procedencia')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="text" name="univer" value="{{$medic->specialty}}"></x-input>
+                                </div>
+                                <div>
+                                    <x-label :value="__('Actualizar imagen para el perfil')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="file" name="imagen" accept="image/*"></x-input>
+                                </div>
+
                                 <div>
                                     <x-label for="email" :value="__('Numero de celular')"></x-label>
                                     <x-input class="block mt-1 w-full" type="text" name="numbre_phone" value="{{$medic->numbre_phone}}" placeholder="314-100-4281" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></x-input>
                                 </div>
                                 <div>
-                                    <x-label :value="__('Actualizar imagen para el perfil')"></x-label>
-                                    <x-input class="block mt-1 w-full" type="file" name="imagen" ></x-input>
-                                    {{-- <x-label for="email" :value="__('Imagen para el perfil (Solo se aceptan formato de imagenes)')"></x-label> --}}
-                                    {{-- <x-input class="block mt-1 w-full" type="file" value="{{$medic->img}}" name="img" ></x-input> --}}
+                                    <x-label :value="__('Actualizar imagen para logo de la receta')"></x-label>
+                                    <x-input class="block mt-1 w-full" type="file" name="logo" accept="image/*"></x-input>
                                 </div>        
                             </div>
                         @endforeach

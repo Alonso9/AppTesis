@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('description');
             $table->text('numbre_phone');
             $table->string('img');
+            $table->string('logo');
+            $table->string('univer');
         });
     }
 

@@ -98,6 +98,8 @@
                 // select.appendChild(value); //Metemos la opción en el select
             }
         }
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
 
         if(exist){
           alert(msg);
