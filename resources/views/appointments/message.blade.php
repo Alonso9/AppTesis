@@ -17,7 +17,8 @@
                         @method('POST')
                         <label for="nombre">Nombre del paciente</label>
                         <input type="text" name="nombre" value="{{$appointment->patientname}}"/><br>
-                        <input value="{{$appointment->id}}" type="hidden" name="id">
+                        {{-- <input value="{{$appointment->id}}" type="hidden" name="id"> --}}
+                        <x-input class="block mt-1 w-full" type="text" name="id" value="{{Auth::user()->id}}"></x-input>
                         <input value="1" type="hidden" name="status">
                     
                         <label for="apellidos">Edad del paciente</label>

@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Date;
 use App\Models\User;
 use App\Models\Patient;
 use App\Models\appointmentdata;
+use App\Models\medicData;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Session;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+// use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use PDF;
 
 class AppointmentController extends Controller
 {
@@ -199,6 +201,7 @@ class AppointmentController extends Controller
         $appointment->status = $request->input('status');
         $appointment->save();
 
+        set_time_limit(300);
         $data = DB::insert('insert into appointmentdata (matter, description, blood_pressure, weight, height, medicine, finaldescription, idAppointment) values (?,?,?,?,?,?,?,?)', [$request->input('matter'), $request->input('description'), $request->input('blood_pressure'), $request->input('weight'), $request->input('height'), $request->input('medicine'), $request->input('finaldescription'), $request->input('id')]);
 
         return view('appointments.message', compact('appointment'));
@@ -206,10 +209,16 @@ class AppointmentController extends Controller
     }
 
     public function pdfGenerator(Request $request){
-        $pdf = PDF::loadview('appointments.download');
+        // $data = medicData::findOrFail($request->input('id'));
+        $data = DB::table('medic_data')->select('*')
+        ->where('medicId','=', auth()->user()->id)->paginate(50);
+        set_time_limit(300);
+        print_r($request->input('id'));
+        $pdf = PDF::loadview('appointments.download', compact('data'));
         
 
         return $pdf->download('recetamedica');
+        // return $data;
     }
 
 }

@@ -1,0 +1,101 @@
+body{
+	/* margin: 70px 200px 50px 200px; Top, right, botton and left */
+	/* border: 1px solid rgb(11, 11, 11);
+	border-style: dashed; */
+}
+
+.wrapper {
+	border: 1px solid rgb(11, 11, 11);
+	border-style: dashed;
+	width: 650px;
+	height: 500px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+
+.logo{
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 50px;
+	height: 50px;
+}
+
+.logoescuela{
+	margin-top: 20px;
+	margin-left: 570px;
+	width: 80px;
+	height: 80px;
+}
+
+.img{
+	width: 650px;
+	height: 70px;
+	background-color: red;
+}
+.lo{
+	background-color: aquamarine;
+	width: 50px;
+}
+.lo2{
+	background-color: aliceblue;
+	width: 50px;
+}
+
+.titulo{
+	text-align: center;
+	margin-top: 1px;
+	/* background-color: blue; */
+}
+
+.indicaciones{
+	/* background-color: green; */
+}
+
+.line{
+  border-top: 1px solid black;
+  height: 2px;
+  padding: 0;
+  margin: 45px 25px 0 auto;
+
+}
+
+.date{
+	margin-left: 70px;
+	/* background-color: yellow; */
+}
+
+.firma{
+	margin-right: 30px;
+	/* background-color: blueviolet; */
+}
+
+.ubi{
+	z-index: 100;
+}
+
+.fondo2{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: -1;
+	opacity: .35;
+}
+
+.indi{
+	margin-left: 150px;
+}
+
+/* 
+
+@media only screen and (max-width: 1100px) {
+  .logoescuela{
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-left: 25px;
+	width: 16%;
+	height: 80%;	
+}
+} */
